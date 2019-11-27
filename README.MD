@@ -67,7 +67,7 @@ rabbitmq-consumer   0         0         0            0           3s
 The following job will publish 300 messages to the "hello" queue the deployment is listening to. As the queue builds up, KEDA will help the horizontal pod autoscaler add more and more pods until the queue is drained after about 2 minutes and up to 30 concurrent pods.  You can modify the exact number of published messages in the `deploy-publisher-job.yaml` file.
 
 ```cli
-kubectl apply -f rabbitMQReceiver/deploy-publisher-job.yaml
+kubectl apply -f rabbitMQProducer/deploy-publisher-job.yaml
 ```
 
 #### Validate the deployment scales
