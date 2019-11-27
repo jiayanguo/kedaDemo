@@ -16,8 +16,8 @@ This setup will go through creating a RabbitMQ queue on the cluster and deployin
 First you should clone the project:
 
 ```cli
-git clone https://github.com/kedacore/sample-go-rabbitmq
-cd sample-go-rabbitmq
+git clone https://github.com/jiayanguo/kedaDemo.git
+cd kedaDemo
 ```
 
 ### Creating a RabbitMQ queue
