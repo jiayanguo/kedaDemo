@@ -13,7 +13,6 @@ import java.util.Random;
 public class Receiver {
 
     private final static String QUEUE_NAME = "hello";
-    private static int time = 0;
 
     public static void main(String[] argv) throws Exception {
         String url = System.getenv("rabbitMQ");
@@ -31,6 +30,7 @@ public class Receiver {
             Random random = new Random();
             int time = random.nextInt(10);
             Thread.sleep(time * 1000);
+            System.out.println("Message consumed");
         }
     }
 }
