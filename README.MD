@@ -87,7 +87,7 @@ After the queue is empty and the specified cooldown period (a property of the `S
 ## Cleanup resources
 
 ```cli
-kubectl delete job rabbitmq-publish
+kubectl delete cronjob rabbitmq-publish
 kubectl delete ScaledObject rabbitmq-consumer
 kubectl delete deploy rabbitmq-consumer
 helm delete rabbitmq
