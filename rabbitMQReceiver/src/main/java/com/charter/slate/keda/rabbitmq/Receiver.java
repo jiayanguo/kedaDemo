@@ -19,17 +19,18 @@ public class Receiver {
         String url = System.getenv("rabbitMQ");
         ConnectionFactory factory = new ConnectionFactory();
         factory.setUri(url);
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
-        channel.basicQos(1);
+        try (Connection connection = factory.newConnection();
+             Channel channel = connection.createChannel()) {
+            channel.basicQos(1);
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
-        GetResponse response = channel.basicGet(QUEUE_NAME, true);
-        System.out.println(response.getBody());
+            GetResponse response = channel.basicGet(QUEUE_NAME, true);
+            System.out.println(response.getBody());
 
-        Random random = new Random();
-        int time = random.nextInt(10);
-        Thread.sleep(time * 1000);
+            Random random = new Random();
+            int time = random.nextInt(10);
+            Thread.sleep(time * 1000);
+        }
     }
 }
