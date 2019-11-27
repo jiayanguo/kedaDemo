@@ -1,18 +1,20 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: batch/v1beta1
+kind: CronJob
 metadata:
   name: rabbitmq-publish
 spec:
-  template:
+  schedule: "*/1 * * * *"
+  jobTemplate:
     spec:
-      containers:
-        - name: rabbitmq-client
-          image:  jiayan/rabbitproducer
-          imagePullPolicy: Always
-          env:
-          - name: rabbitMQ
-            value: amqp://user:PASSWORD@rabbitmq.default.svc.cluster.local:5672
-          - name: repeat
-            value: "300"
-      restartPolicy: Never
-  backoffLimit: 4
+      template:
+        spec:
+          containers:
+            - name: rabbitmq-client
+              image:  jiayan/rabbitproducer
+              imagePullPolicy: Always
+              env:
+              - name: rabbitMQ
+                value: amqp://user:PASSWORD@rabbitmq.default.svc.cluster.local:5672
+              - name: repeat
+                value: "300"
+          restartPolicy: Never
