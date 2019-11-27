@@ -5,6 +5,8 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.GetResponse;
 
+import java.util.Random;
+
 /**
  * Created by jguo on 11/26/19.
  */
@@ -26,8 +28,8 @@ public class Receiver {
         GetResponse response = channel.basicGet(QUEUE_NAME, true);
         System.out.println(response.getBody());
 
-        Thread.sleep((time%10) * 1000);
-
-        System.out.println("Consumer consume message " + time + " times");
+        Random random = new Random();
+        int time = random.nextInt(10);
+        Thread.sleep(time * 1000);
     }
 }
